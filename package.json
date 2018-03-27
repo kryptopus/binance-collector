@@ -1,0 +1,58 @@
+{
+    "name": "kryptopus-binance-collector",
+    "description": "Collect datas from binance.com",
+    "version": "0.1.0",
+    "author": "neolao <contact@neolao.com>",
+    "repository": "https://github.com/kryptopus/binance-collector.git",
+    "license": "MIT",
+    "files": [
+        "lib",
+        "src"
+    ],
+    "main": "lib/Bundle.js",
+    "engines": {
+        "node": ">= 9"
+    },
+    "dependencies": {
+        "binance": "^1.3.3",
+        "decko": "^1.2.0",
+        "fetch-promise": "^1.0.2",
+        "kryptopus-candlestick": "^1.0.1",
+        "kryptopus-candlestick-storage": "^1.0.0",
+        "moment": "^2.21.0",
+        "solfegejs": "^3.1.1"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.7",
+        "babel-core": "^6.26",
+        "babel-preset-solfege": "^1.2.2",
+        "eslint": "^3.19",
+        "eslint-plugin-solfege": "^1.0",
+        "flow-bin": "^0.60.1",
+        "watch": "^1.0.2"
+    },
+    "scripts": {
+        "prepare": "npm run build",
+        "flow-stop": "flow stop",
+        "flow-start": "flow start",
+        "flow-restart": "flow stop; flow start",
+        "lint": "eslint --ext .js src",
+        "prebuild": "npm run lint && flow",
+        "build": "babel --out-dir lib src --copy-files",
+        "postbuild": "echo \"---------- READY ---------\"",
+        "watch": "watch 'echo \"----- START BUILDING -----\"; npm run build --silent' ./src",
+        "console": "node ./lib/console.js"
+    },
+    "babel": {
+        "presets": [
+            "solfege"
+        ],
+        "comments": false
+    },
+    "eslintConfig": {
+        "extends": [
+            "eslint:recommended",
+            "plugin:solfege/recommended"
+        ]
+    }
+}

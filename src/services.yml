@@ -1,0 +1,15 @@
+services:
+    kryptopus_command_collect_binance_pair_interval_in_period:
+        class: application/command/CollectPairIntervalInPeriodCommand
+        arguments:
+            - "@kryptopus_binance_collector"
+        tags:
+            - { name: solfege.console.command }
+
+    kryptopus_binance_collector:
+        class: application/service/CollectorService
+        arguments:
+            - "@kryptopus_binance_candle_saver"
+
+    kryptopus_binance_candle_saver:
+        class: domain/service/CandleSaver
